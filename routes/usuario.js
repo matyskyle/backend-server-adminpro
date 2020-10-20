@@ -115,7 +115,7 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
 // ==========================================
 // Eliminar usuario
 // ==========================================
-app.delete('/:id', (req, res) => {
+app.delete('/:id', mdAutenticacion.verificaToken, (req, res) => {
     var id = req.params.id;
 
     usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
