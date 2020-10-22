@@ -15,6 +15,15 @@ app.use(bodyParser.json())
 var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
+//hospital
+var hospitalRoutes = require('./routes/hospital');
+//Medico
+var medicoRoutes = require('./routes/medico');
+//Busqueda general
+var busquedaRoutes = require('./routes/busqueda');
+//Cargar
+var uploadRoutes = require('./routes/upload');
+var imagenesRoutes = require('./routes/imagenes');
 
 //Conexion DB
 mongoose.connect('mongodb://localhost:27017/hospitalDB', { useNewUrlParser: true, useUnifiedTopology: true, }, (err, res) => {
@@ -27,6 +36,12 @@ mongoose.set('useCreateIndex', true);
 //Rutas
 app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);
+app.use('/hospital', hospitalRoutes);
+app.use('/medico', medicoRoutes);
+app.use('/busqueda', busquedaRoutes);
+app.use('/upload', uploadRoutes);
+app.use('/img', imagenesRoutes);
+
 app.use('/', appRoutes);
 
 //Escuchar peticiones
