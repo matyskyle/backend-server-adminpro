@@ -88,7 +88,8 @@ function subirPorTipo(tipo, id, nombreArchivo, res) {
 
             // Si existe, elimina la imagen anterior
             if (fs.existsSync(pathViejo)) {
-                fs.unlink(pathViejo);
+                pathViejo = null;
+                usuario.img = '';
             }
 
             usuario.img = nombreArchivo;
@@ -119,20 +120,22 @@ function subirPorTipo(tipo, id, nombreArchivo, res) {
             }
 
             var pathViejo = './uploads/medicos/' + medico.img;
-
+            console.log('IMG antigua '+medico.img);
             // Si existe, elimina la imagen anterior
             if (fs.existsSync(pathViejo)) {
-                fs.unlink(pathViejo);
+                pathViejo = null;
+                medico.img = '';
             }
 
             medico.img = nombreArchivo;
+            console.log('IMG nueva '+medico.img)
 
             medico.save((err, medicoActualizado) => {
 
                 return res.status(200).json({
                     ok: true,
                     mensaje: 'Imagen de médico actualizada',
-                    usuario: medicoActualizado
+                    medico: medicoActualizado
                 });
             })
         });
@@ -151,20 +154,22 @@ function subirPorTipo(tipo, id, nombreArchivo, res) {
             }
 
             var pathViejo = './uploads/hospitales/' + hospital.img;
-
+            console.log('IMG antigua '+hospital.img);
             // Si existe, elimina la imagen anterior
             if (fs.existsSync(pathViejo)) {
-                fs.unlink(pathViejo);
+                pathViejo = null;
+                hospital.img = '';
             }
 
             hospital.img = nombreArchivo;
+            console.log('IMG nueva '+hospital.img)
 
             hospital.save((err, hospitalActualizado) => {
 
                 return res.status(200).json({
                     ok: true,
                     mensaje: 'Imagen de hospital actualizada',
-                    usuario: hospitalActualizado
+                    hospital: hospitalActualizado
                 });
             })
         });

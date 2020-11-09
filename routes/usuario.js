@@ -16,7 +16,7 @@ app.get('/', (req, res, next) => {
     var desde = req.query.desde || 0;
     desde = Number(desde);
 
-    Usuario.find({}, 'nombre email img role').limit(5).skip(desde)
+    Usuario.find({}, 'nombre email img role google').limit(5).skip(desde)
         .exec( (err, usuarios) => {
 
                 if (err) {
@@ -76,8 +76,6 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
                     errors: err
                 });
             }
-
-            usuarioGuardado.contrasena = ':)';
 
             res.status(200).json({
                 ok: true,
